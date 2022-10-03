@@ -138,7 +138,27 @@ describe('Test PIM link', ()=>{
        //rowCountBefore = row.length
        cy.log('rows after delete ' + row.length);
        })
-       
+
+       // Verify search feature
+       cy.get('.oxd-select-text--arrow.oxd-icon.bi-caret-down-fill.oxd-select-text--arrow')
+        .eq(0).click({force: true})
+       cy.contains('Full-Time Contract')
+        .click()
+        cy.wait(200)
+
+        cy.get('.oxd-select-text--arrow.oxd-icon.bi-caret-down-fill.oxd-select-text--arrow')
+        .eq(2).click({force: true})
+        cy.contains('Account Assistant')
+            .click()
+        cy.wait(200)
+
+        cy.contains('Search')
+            .click({force: true})
+        cy.wait(100)
+        cy.contains('Alice')
+            .should('be.visible')
+
+
 
 
        
