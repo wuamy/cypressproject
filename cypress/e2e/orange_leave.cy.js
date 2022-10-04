@@ -43,6 +43,68 @@ describe('Test Leave Feature', ()=>{
         cy.wait(100)
         cy.get('.oxd-topbar-header-breadcrumb > .oxd-text')
             .should('contain.text','Leave')
+
+        cy.get('.oxd-main-menu-search > .oxd-icon-button')
+            .click()
+        cy.wait(500)
+
+        cy.get('.oxd-topbar-body-nav-tab-item')
+            .eq(0).should('contain.text', 'Apply')
+        
+        cy.get('.oxd-topbar-body-nav-tab-item')
+            .eq(1).should('contain.text', 'My Leave')
+
+        cy.get('.oxd-topbar-body-nav-tab-item')
+            .eq(2).should('contain.text', 'Entitlements')
+
+        cy.get('.oxd-topbar-body-nav-tab-item')
+            .eq(3).should('contain.text', 'Reports')
+
+        cy.get('.oxd-topbar-body-nav-tab-item')
+            .eq(4).should('contain.text', 'Configure')
+
+        cy.get('.oxd-topbar-body-nav-tab-item')
+            .eq(5).should('contain.text', 'Leave List')
+
+        cy.get('.oxd-topbar-body-nav-tab-item')
+            .eq(6).should('contain.text', 'Assign Leave')
+
+        // Verify Apply leave page
+        cy.contains('Apply')
+            .click()
+        cy.wait(200)
+        cy.get('.orangehrm-card-container > .oxd-text--h6')
+            .should('contain.text', 'Apply Leave')
+
+        cy.get('label').eq(0)
+            .should('contain.text', 'Leave Type')
+        cy.get('label').eq(1)
+            .should('contain.text', 'Leave Balance')
+        cy.get('label').eq(2)
+            .should('contain.text', 'From Date')
+        cy.get('label').eq(3)
+            .should('contain.text', 'To Date')
+        cy.get('label').eq(4)
+            .should('contain.text', 'Comments')
+        
+        // Verify button 
+        cy.get('.oxd-button')
+            .should('contain.text','Apply')
+        
+        // Verify button color
+        cy.get('.oxd-button')
+            .invoke('css','background-color')
+            .then((bgcolor)=>{
+                expect(rgbHex(bgcolor)).to.eq('76bc21')
+            })
+        
+                    
+
+
+
+
+             
+
         
     })
 })
