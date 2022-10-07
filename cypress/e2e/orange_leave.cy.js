@@ -124,8 +124,6 @@ describe('Test Leave Feature', ()=>{
             .type('test apply')
         cy.wait(100)
 
-        
-
         cy.get('.oxd-button').click()
                     
 
