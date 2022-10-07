@@ -41,6 +41,9 @@ describe('Test Leave Feature', ()=>{
         cy.get(':nth-child(3) > .oxd-main-menu-item > .oxd-text')
             .click()
         cy.wait(100)
+        // verify page url
+        cy.url().should('eq','https://opensource-demo.orangehrmlive.com/web/index.php/leave/viewLeaveList')
+        
         cy.get('.oxd-topbar-header-breadcrumb > .oxd-text')
             .should('contain.text','Leave')
 
@@ -97,7 +100,38 @@ describe('Test Leave Feature', ()=>{
             .then((bgcolor)=>{
                 expect(rgbHex(bgcolor)).to.eq('76bc21')
             })
+
+        // apply leave
+        cy.get('.oxd-select-text-input')
+            .eq(0).click()
+            .type('{downarrow}').click()
         
+        cy.get('[data-v-2fe357a6=""] > .oxd-text')
+            .click()
+        
+        // enter date from calendar
+        cy.get('.bi-calendar').eq(0).click()
+        cy.contains('1').click()
+        cy.wait(100)
+        cy.get('.bi-calendar').eq(1).click()
+        cy.contains('10').click()
+
+        cy.get('.oxd-select-text-input')
+            .eq(1).click()
+            .type('{downarrow}')
+        cy.get('[data-v-2fe357a6=""] > .oxd-text')
+            .click()
+
+        cy.get('.oxd-textarea')
+            .type('test apply')
+        cy.wait(100)
+
+        // apply leave
+        cy.get('.oxd-select-text-input')
+            .eq(0).click()
+            .type('{downarrow}').click()
+
+        cy.get('.oxd-button').click()
                     
 
 
