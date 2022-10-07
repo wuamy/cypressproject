@@ -104,11 +104,9 @@ describe('Test Leave Feature', ()=>{
         // apply leave
         cy.get('.oxd-select-text-input')
             .eq(0).click()
-            .type('{downarrow}').click()
-        
-        cy.get('[data-v-2fe357a6=""] > .oxd-text')
-            .click()
-        
+            .type('{downarrow}').click({ force: true })
+        cy.wait(200)
+            
         // enter date from calendar
         cy.get('.bi-calendar').eq(0).click()
         cy.contains('1').click()
@@ -126,10 +124,7 @@ describe('Test Leave Feature', ()=>{
             .type('test apply')
         cy.wait(100)
 
-        // apply leave
-        cy.get('.oxd-select-text-input')
-            .eq(0).click()
-            .type('{downarrow}').click()
+        
 
         cy.get('.oxd-button').click()
                     
