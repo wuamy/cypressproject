@@ -16,22 +16,7 @@ import rgbHex from 'rgb-hex'
 describe('Test Leave Feature', ()=>{
     beforeEach('login the website', ()=>{
         cy.visit('https://opensource-demo.orangehrmlive.com/web/index.php/auth/login')
-
-        // login the website
-        cy.get(':nth-child(2) > .oxd-input-group > :nth-child(2) > .oxd-input')
-           .type('Admin')
-           .should('have.value','Admin')
-            
-        // enter password
-        //cy.get(':nth-child(3) > .oxd-input-group > :nth-child(2) > .oxd-input')
-        cy.get('input[name=password]')
-            .type('admin123')
-            .should('have.value', 'admin123')
-                
-        // click login button
-        cy.get('.oxd-button')
-            .click()
-
+        cy.login('Admin','admin123')
         cy.wait(2000)
     })
 
@@ -96,10 +81,12 @@ describe('Test Leave Feature', ()=>{
         
         // Verify button color
         cy.get('.oxd-button')
-            .invoke('css','background-color')
-            .then((bgcolor)=>{
-                expect(rgbHex(bgcolor)).to.eq('76bc21')
-            })
+            // .invoke('css','background-color')
+            // .then((bgcolor)=>{
+            //     expect(rgbHex(bgcolor)).to.eq('668242')
+            // })
+            .should('have.css','background-color')
+            .and('eq', 'rgb(100, 128, 64)')
 
         // apply leave
         cy.get('.oxd-select-text-input')
