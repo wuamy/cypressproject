@@ -12,29 +12,32 @@ import rgbHex from 'rgb-hex'
  */
 
 describe('Test PIM link', ()=>{
-    beforeEach('login the website', ()=>{
-        cy.visit('https://opensource-demo.orangehrmlive.com/web/index.php/auth/login')
+    // beforeEach('login the website', ()=>{
+    //     cy.visit('https://opensource-demo.orangehrmlive.com/web/index.php/auth/login')
 
-        // login the website
-        cy.get(':nth-child(2) > .oxd-input-group > :nth-child(2) > .oxd-input')
-           .type('Admin')
-           .should('have.value','Admin')
+    //     // login the website
+    //     cy.get(':nth-child(2) > .oxd-input-group > :nth-child(2) > .oxd-input')
+    //        .type('Admin')
+    //        .should('have.value','Admin')
             
-        // enter password
-        //cy.get(':nth-child(3) > .oxd-input-group > :nth-child(2) > .oxd-input')
-        cy.get('input[name=password]')
-            .type('admin123')
-            .should('have.value', 'admin123')
+    //     // enter password
+    //     //cy.get(':nth-child(3) > .oxd-input-group > :nth-child(2) > .oxd-input')
+    //     cy.get('input[name=password]')
+    //         .type('admin123')
+    //         .should('have.value', 'admin123')
                 
-        // click login button
-        cy.get('.oxd-button')
-            .click()
+    //     // click login button
+    //     cy.get('.oxd-button')
+    //         .click()
 
-        cy.wait(1000)
-    })
+    //     cy.wait(1000)
+    // })
 
     // click PIM link
     it('Verify PIM tab', ()=>{
+        cy.visit('https://opensource-demo.orangehrmlive.com/web/index.php/auth/login')
+        cy.login('Admin','admin123')
+        cy.wait(1000)
         
         cy.contains('Employee Information')
             .should('have.text', 'Employee Information')
